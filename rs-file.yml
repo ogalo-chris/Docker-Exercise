@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend-replicaset
+  labels:
+    app: frontend
+spec:
+  # Setting the number of replicas to 2 for high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - # Using nginx version 1.14.2 for stability and compatibility reasons
+          image: nginx:1.14.2
